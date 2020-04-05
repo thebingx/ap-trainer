@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>Liam's Perfect Pitch</title>
+        <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="index.css" rel="stylesheet">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <a class="navbar-brand" href="#">Perfect Pitch</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Learn</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Quiz</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">Settings</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="starter-template">
+                <h1>Hello, Liam!</h1>
+                <p class="lead">This is a birthday gift from your dad. I&apos;m giving you a perfect sense to tell different music notes apart. It is an incredible ability that will set you apart from your peers!</p>
+            </div>
+        </div>
+        <!-- /.container -->
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <div id="app">
+            <img v-bind:src="myimage" class="note" height="500">
+            <div class="info">
+                <p>{{ message }}</p>
+            </div>
+            <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;grid-template-rows:100px 100px;">
+                <button v-on:click="playNote(note.text)" type="button" class="btn btn-secondary" style="border-radius: 0px;" v-for="note in notes" v-bind:id="note.text" v-bind:disabled="note.disabled">
+                    {{ note.text }}
+                </button>
+            </div>
+        </div>
+
+        <footer>
+            <p style="background-color: #004b7c; color: #ffffff; padding-bottom: 12px; padding-top: 12px; padding-left: 24px;" class="">Copyright (C) 2019-2020 Liam Studio</p>
+        </footer>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/popper.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- development version, includes helpful console warnings -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <!-- Vue Scripts -->
+        <script>
+            
+            var noteTrack = new Audio()
+
+            var app = new Vue ({
+                el: '#app',
+                data: {
+                    myimage: "assets/images/front.gif",
+                    message: 'Pick a note below to start!',
+                    notes: [
+                        { text: 'C', disabled: false },
+                        { text: 'D', disabled: false },
+                        { text: 'E', disabled: false },
+                        { text: 'F', disabled: false },
+                        { text: 'G', disabled: false },
+                        { text: 'A', disabled: false },
+                        { text: 'B', disabled: false },
+                        { text: 'X', disabled: true },
+                        { text: 'Db', disabled: false },
+                        { text: 'Eb', disabled: false },
+                        { text: 'Z', disabled: true },
+                        { text: 'Gb', disabled: false },
+                        { text: 'Ab', disabled: false },
+                        { text: 'Bb', disabled: false },
+                    ]
+                },
+                methods: {
+                    playNote(note) {
+                        s = Math.floor(Math.random() * 2) + 3,
+                        this.message = 'Playing the ' + note + s + ' note!',
+                        this.myimage = 'assets/images/' + note + '.gif',
+                        noteTrack.src = 'assets/sound/' + note + s + '.mp3',
+                        noteTrack.play()
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
