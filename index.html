@@ -47,13 +47,14 @@
     ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
         <div id="app">
-            <img v-bind:src="myimage" class="note" height="500">
+            <img v-bind:src="myimage" class="note" height="360">
             <div class="info">
                 <p>{{ message }}</p>
             </div>
-            <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;grid-template-rows:100px 100px;">
-                <button v-on:click="playNote(note.text)" type="button" class="btn btn-secondary" style="border-radius: 0px;" v-for="note in notes" v-bind:id="note.text" v-bind:disabled="note.disabled">
-                    {{ note.text }}
+            <div class="btn-group btn-group-lg" role="group" aria-label="Large button group" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;grid-template-rows:120px 120px;">
+                <button v-on:click="playNote(note.id)" type="button" class="btn btn-secondary" style="border-radius: 0px;" v-for="note in notes" v-bind:id="note.text" v-bind:disabled="note.disabled">
+                    <img v-bind:src="note.icon" height="64" />
+                    <p>{{ note.text }}</p>
                 </button>
             </div>
         </div>
@@ -78,20 +79,20 @@
                     myimage: "assets/images/front.gif",
                     message: 'Pick a note below to start!',
                     notes: [
-                        { text: 'C', disabled: false },
-                        { text: 'D', disabled: false },
-                        { text: 'E', disabled: false },
-                        { text: 'F', disabled: false },
-                        { text: 'G', disabled: false },
-                        { text: 'A', disabled: false },
-                        { text: 'B', disabled: false },
-                        { text: 'X', disabled: true },
-                        { text: 'Db', disabled: false },
-                        { text: 'Eb', disabled: false },
-                        { text: 'Z', disabled: true },
-                        { text: 'Gb', disabled: false },
-                        { text: 'Ab', disabled: false },
-                        { text: 'Bb', disabled: false },
+                        { id:'C', text: 'Cat', disabled: false, icon: 'assets/images/C-icon.png'},
+                        { id:'D', text: 'Dog', disabled: false, icon: 'assets/images/D-icon.png'},
+                        { id:'E', text: 'Elephant', disabled: false, icon: 'assets/images/E-icon.png'},
+                        { id:'F', text: 'Fox', disabled: false, icon: 'assets/images/F-icon.png'},
+                        { id:'G', text: 'Giraffe', disabled: false, icon: 'assets/images/G-icon.png'},
+                        { id:'A', text: 'Alpaca', disabled: false, icon: 'assets/images/A-icon.png'},
+                        { id:'B', text: 'Bear', disabled: false, icon: 'assets/images/B-icon.png'},
+                        { id:'X', text: '', disabled: true, icon: 'assets/images/X-icon.png'},
+                        { id:'Db', text: 'Dragonfruit', disabled: false, icon: 'assets/images/Db-icon.png'},
+                        { id:'Eb', text: 'Eggplant', disabled: false, icon: 'assets/images/Eb-icon.png'},
+                        { id:'Y', text: '', disabled: true, icon: 'assets/images/X-icon.png'},
+                        { id:'Gb', text: 'Grape', disabled: false, icon: 'assets/images/Gb-icon.png'},
+                        { id:'Ab', text: 'Apple', disabled: false, icon: 'assets/images/Ab-icon.png'},
+                        { id:'Bb', text: 'Banana', disabled: false, icon: 'assets/images/Bb-icon.png'},
                     ]
                 },
                 methods: {
